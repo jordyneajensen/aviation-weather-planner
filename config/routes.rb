@@ -13,5 +13,10 @@ Rails.application.routes.draw do
     # Route for testing weather data
     get 'weather/:city', to: 'application#test_weather'
   end
+
+  Rails.application.routes.draw do
+    # Route for displaying weather data
+    get 'weather', to: 'weather#index'
+  end  
   
 end
