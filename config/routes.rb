@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'weather/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -8,8 +9,14 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   Rails.application.routes.draw do
+  get 'weather/index'
     # Route for testing weather data
     get 'weather/:city', to: 'application#test_weather'
   end
+
+  Rails.application.routes.draw do
+    # Route for displaying weather data
+    get 'weather', to: 'weather#index'
+  end  
   
 end
