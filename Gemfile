@@ -47,3 +47,5 @@ end
 
 gem 'dotenv-rails', groups: [:development, :test]
 
+# In your Gemfile
+gem "importmap-rails"
