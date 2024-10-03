@@ -7,4 +7,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  Rails.application.routes.draw do
+    # Route for testing weather data
+    get 'weather/:city', to: 'application#test_weather'
+  end
+  
 end
