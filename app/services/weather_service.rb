@@ -14,5 +14,8 @@ class WeatherService
     uri = URI(url)
     response = Net::HTTP.get(uri)
     JSON.parse(response)
+  rescue StandardError => e
+    { error: "Failed to retrieve weather data", message: e.message }
   end
 end
+

@@ -1,22 +1,17 @@
 Rails.application.routes.draw do
-  get 'weather/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Devise routes for user authentication
+  devise_for :users
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Weather-related routes
+  get 'weather/index'
+  get 'weather/:city', to: 'application#test_weather', as: :test_weather
+  get 'weather', to: 'weather#index'
+
+
+  # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
+  # Root route (you can define your root later)
   # root "posts#index"
-  Rails.application.routes.draw do
-  get 'weather/index'
-    # Route for testing weather data
-    get 'weather/:city', to: 'application#test_weather'
-  end
-
-  Rails.application.routes.draw do
-    # Route for displaying weather data
-    get 'weather', to: 'weather#index'
-  end  
-  
 end
+
