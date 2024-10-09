@@ -9,10 +9,13 @@ class ApplicationController < ActionController::Base
     end
     
     def test_weather
-      city = params[:city] || 'New York'  # Use 'New York' as default city
-      weather_service = WeatherService.new(city)
-      weather_data = weather_service.fetch_weather
-      render json: weather_data
+      city = params[:city] || 'New York'
+      cached_weather = Rails.cache.fetch("weather_#{city}", expires_in: 1.hour) do
+        WeatherService.new(city).fetch_weather
+      end
+      render json: cached_weather
+    rescue StandardError => e
+      render json: { error: "Failed to fetch weather data: #{e.message}" }, status: :bad_request
     end
 
     def after_sign_in_path_for(resource)
