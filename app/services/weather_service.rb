@@ -22,10 +22,16 @@ class WeatherService
     {
       city: parsed_response['name'],
       temperature: parsed_response['main']['temp'],
-      weather: parsed_response['weather'].first['description']
+      weather: parsed_response['weather'].first['description'],
+      humidity: parsed_response['main']['humidity'],
+      wind_speed: parsed_response['wind']['speed'],
+      cloud_coverage: parsed_response['clouds']['all'],
+      pressure: parsed_response['main']['pressure'],
+      visibility: parsed_response['visibility']
     }
   rescue StandardError => e
     { error: "Failed to retrieve weather data", message: e.message }
   end
 end
+
 
