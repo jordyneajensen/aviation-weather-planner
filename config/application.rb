@@ -31,6 +31,8 @@ module AviationWeatherPlanner
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # Keep API mode, but enable middleware for cookies, sessions, and flashes
+    config.api_only = true
 
     # Add middleware for session handling
     config.middleware.use ActionDispatch::Cookies

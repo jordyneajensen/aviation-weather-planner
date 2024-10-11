@@ -8,19 +8,18 @@
   </div>
 <% end %>
 
-<% if @weather_data['cod'] == 200 %>
-  <h2>Current Weather in <%= @weather_data['name'] %></h2>
-  <p><strong>Temperature:</strong> <%= @weather_data['main']['temp'] %> °C</p>
-  <p><strong>Feels Like:</strong> <%= @weather_data['main']['feels_like'] %> °C</p>
-  <p><strong>Weather:</strong> <%= @weather_data['weather'][0]['description'] %></p>
-  <p><strong>Humidity:</strong> <%= @weather_data['main']['humidity'] %> %</p>
-  <p><strong>Wind Speed:</strong> <%= @weather_data['wind']['speed'] %> m/s</p>
-  <p><strong>Cloud Coverage:</strong> <%= @weather_data['clouds']['all'] %> %</p>
-<% elsif @weather_data['cod'] == 401 %>
-  <p>Error fetching weather data: Invalid API key.</p>
-<% elsif @weather_data['cod'] == 404 %>
-  <p>Error fetching weather data: <%= @weather_data['message'] %></p>
+<% if @weather_data[:city].present? %>
+  <h2>Current Weather in <%= @weather_data[:city] %></h2>
+  <p><strong>Temperature:</strong> <%= @weather_data[:temperature] %> °C</p>
+  <p><strong>Weather:</strong> <%= @weather_data[:weather] %></p>
+  <p><strong>Humidity:</strong> <%= @weather_data[:humidity] %> %</p>
+  <p><strong>Wind Speed:</strong> <%= @weather_data[:wind_speed] %> m/s</p>
+  <p><strong>Cloud Coverage:</strong> <%= @weather_data[:cloud_coverage] %> %</p>
+  <p><strong>Pressure:</strong> <%= @weather_data[:pressure] %> hPa</p>
+  <p><strong>Visibility:</strong> <%= @weather_data[:visibility] %> m</p>
 <% else %>
   <p>Please enter a city name to get the weather information.</p>
 <% end %>
+
+
 
