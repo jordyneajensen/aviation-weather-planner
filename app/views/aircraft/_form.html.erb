@@ -1,0 +1,118 @@
+<%# app/views/aircraft/_form.html.erb %>
+<%= form_with(model: aircraft, class: "space-y-8") do |f| %>
+  <div class="bg-white shadow sm:rounded-lg">
+    <div class="px-4 py-5 sm:p-6">
+      <%# Form Fields %>
+      <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+        <%# Registration %>
+        <div class="sm:col-span-1">
+          <%= f.label :registration, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :registration, 
+              class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+              placeholder: "N12345" %>
+          <% if aircraft.errors[:registration].any? %>
+            <p class="mt-2 text-sm text-red-600"><%= aircraft.errors[:registration].join(", ") %></p>
+          <% end %>
+        </div>
+
+        <%# Make & Model %>
+        <div class="sm:col-span-1">
+          <%= f.label :make_model, "Make & Model", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :make_model, 
+              class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+              placeholder: "Cessna 172" %>
+          <% if aircraft.errors[:make_model].any? %>
+            <p class="mt-2 text-sm text-red-600"><%= aircraft.errors[:make_model].join(", ") %></p>
+          <% end %>
+        </div>
+
+        <%# Maximum Speed %>
+        <div class="sm:col-span-1">
+          <%= f.label :max_speed, "Maximum Speed (kts)", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.number_field :max_speed, 
+              step: "0.1",
+              class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+          <% if aircraft.errors[:max_speed].any? %>
+            <p class="mt-2 text-sm text-red-600"><%= aircraft.errors[:max_speed].join(", ") %></p>
+          <% end %>
+        </div>
+
+        <%# Cruise Speed %>
+        <div class="sm:col-span-1">
+          <%= f.label :cruise_speed, "Cruise Speed (kts)", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.number_field :cruise_speed, 
+              step: "0.1",
+              class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+          <% if aircraft.errors[:cruise_speed].any? %>
+            <p class="mt-2 text-sm text-red-600"><%= aircraft.errors[:cruise_speed].join(", ") %></p>
+          <% end %>
+        </div>
+
+        <%# Fuel Capacity %>
+        <div class="sm:col-span-1">
+          <%= f.label :fuel_capacity, "Fuel Capacity (gal)", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.number_field :fuel_capacity, 
+              step: "0.1",
+              class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+          <% if aircraft.errors[:fuel_capacity].any? %>
+            <p class="mt-2 text-sm text-red-600"><%= aircraft.errors[:fuel_capacity].join(", ") %></p>
+          <% end %>
+        </div>
+
+        <%# Empty Weight %>
+        <div class="sm:col-span-1">
+          <%= f.label :empty_weight, "Empty Weight (lbs)", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.number_field :empty_weight, 
+              step: "0.1",
+              class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+          <% if aircraft.errors[:empty_weight].any? %>
+            <p class="mt-2 text-sm text-red-600"><%= aircraft.errors[:empty_weight].join(", ") %></p>
+          <% end %>
+        </div>
+
+        <%# Max Takeoff Weight %>
+        <div class="sm:col-span-1">
+          <%= f.label :max_takeoff_weight, "Max Takeoff Weight (lbs)", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.number_field :max_takeoff_weight, 
+              step: "0.1",
+              class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+          <% if aircraft.errors[:max_takeoff_weight].any? %>
+            <p class="mt-2 text-sm text-red-600"><%= aircraft.errors[:max_takeoff_weight].join(", ") %></p>
+          <% end %>
+        </div>
+
+        <%# Status %>
+        <div class="sm:col-span-1">
+          <%= f.label :status, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.select :status, 
+              ['active', 'maintenance', 'inactive', 'retired'],
+              { },
+              { class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" } %>
+          <% if aircraft.errors[:status].any? %>
+            <p class="mt-2 text-sm text-red-600"><%= aircraft.errors[:status].join(", ") %></p>
+          <% end %>
+        </div>
+
+        <%# Notes %>
+        <div class="sm:col-span-2">
+          <%= f.label :notes, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_area :notes, 
+              rows: 3,
+              class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm",
+              placeholder: "Add any additional notes about the aircraft..." %>
+          <% if aircraft.errors[:notes].any? %>
+            <p class="mt-2 text-sm text-red-600"><%= aircraft.errors[:notes].join(", ") %></p>
+          <% end %>
+        </div>
+      </div>
+
+      <%# Form Actions %>
+      <div class="mt-6 flex items-center justify-end space-x-3">
+        <%= link_to "Cancel", aircraft_index_path, 
+            class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+        
+        <%= f.submit class: "inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+      </div>
+    </div>
+  </div>
+<% end %>
