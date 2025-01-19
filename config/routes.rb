@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Devise routes for user authentication
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
-
+  resources :aircraft
 
   # Weather-related routes
   get 'weather/index', to: 'weather#index', as: :weather_index

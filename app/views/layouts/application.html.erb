@@ -4,8 +4,7 @@
   <title>AeroPath</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_importmap_tags %> <!-- Use this for Import Maps -->
 </head>
 
@@ -13,10 +12,10 @@
   <header>
     <nav>
       <% if user_signed_in? %>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary', rel: 'nofollow' %>
       <% else %>
-        <%= link_to 'Sign Up', new_user_registration_path %>
-        <%= link_to 'Login', new_user_session_path %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary' %>
+        <%= link_to 'Login', new_user_session_path, class: 'btn btn-secondary' %>
       <% end %>
     </nav>
   </header>
