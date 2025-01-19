@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   # Redirect user after sign-out
   def after_sign_out_path_for(resource_or_scope)
-    root_path  # Redirect to the root path after sign-out
+    root_path
   end
 end
 

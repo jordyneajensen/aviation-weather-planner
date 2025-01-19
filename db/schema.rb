@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_05_164015) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_19_180710) do
+  create_table "aircrafts", force: :cascade do |t|
+    t.string "registration"
+    t.string "make_model"
+    t.float "max_speed"
+    t.float "cruise_speed"
+    t.float "fuel_capacity"
+    t.float "empty_weight"
+    t.float "max_takeoff_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "routes", force: :cascade do |t|
     t.string "departure_airport"
     t.string "destination_airport"

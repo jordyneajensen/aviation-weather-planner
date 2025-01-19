@@ -5,5 +5,8 @@ class Users::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resource)
     weather_index_path # Redirect to the weather page after sign-in
   end
+  def destroy
+    super # Calls the original Devise destroy method
+  end
 end
 
